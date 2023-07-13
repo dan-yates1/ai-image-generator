@@ -1,11 +1,19 @@
 import openai
 import requests
 import uuid
+import sys
 
 openai.api_key = open("API_KEY" , "r").read()
 
+text = ""
+
+if len(sys.argv) > 1:
+    text = ' '.join(sys.argv[1:])
+else:
+    print("No prompt provided.")
+
 response = openai.Image.create(
-  prompt="spaceship flying through space 4k ultra hd",
+  prompt=text,
   n=1,
   size="1024x1024"
 )
